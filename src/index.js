@@ -6,14 +6,19 @@ const apiLogic = (() =>{
         try{
             const apiResponse = await fetch(`https://api.nasa.gov/planetary/apod?api_key=RniEDW1yakFezEGAKtaMcLMz2KtS5xUKPdMUlky0&date=${query}`)
             const apiResponseJSON = await apiResponse.json();
-            console.log(apiResponseJSON)
+            return(apiResponseJSON)
         }
         catch{
-            console.log("error")
+            // Error Handling is yet to be implemented
+            console.log("yikes")
         }
     }
 
-    return {queryAPI}
-})()
+    function getTodayDate(){
+        let date = new Date();
+        return [date.getFullYear(),date.getMonth()+1,date.getDate()]
+    }
 
-apiLogic.queryAPI("2002-10-02");
+
+    return {queryAPI, getTodayDate}
+})()
