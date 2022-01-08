@@ -4,7 +4,8 @@
   "description": "\"Image-sharing from the final frontier\". Shopify Summer 2022 Intern Challenge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --ext .js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,11 @@
   },
   "homepage": "https://github.com/ArjunSaili1/spacestagram#readme",
   "devDependencies": {
+    "@shopify/eslint-plugin": "^41.0.1",
     "css-loader": "^6.5.1",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "2.5.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
