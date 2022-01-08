@@ -23,5 +23,12 @@ const apiLogic = (() => {
     ).toLocaleDateString("fr-CA");
   }
 
-  return { queryAPI, getRandomDate };
+  async function getRandomAPOD() {
+    const randomDate = getRandomDate();
+    const randomAPOD = await queryAPI(randomDate);
+    return randomAPOD;
+  }
+
+  return { queryAPI, getRandomAPOD};
 })();
+
