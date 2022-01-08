@@ -14,11 +14,12 @@ const apiLogic = (() =>{
         }
     }
 
-    function getTodayDate(){
-        let date = new Date();
-        return [date.getFullYear(),date.getMonth()+1,date.getDate()]
+    function getRandomDate() {
+        const todayDate = new Date();
+        const startDate = new Date(1995, 5, 16);
+        return (new Date(startDate.getTime() + Math.random() * (todayDate.getTime() - startDate.getTime())).toLocaleDateString('fr-CA'));
+
     }
 
-
-    return {queryAPI, getTodayDate}
-})()
+    return {queryAPI, getRandomDate}
+})();
