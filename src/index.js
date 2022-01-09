@@ -1,6 +1,7 @@
 import "./styles.css";
+import { displayControl } from "./displayControl";
 
-const apiLogic = (() => {
+export const apiLogic = (() => {
   async function queryAPI(query) {
     try {
       const apiResponse = await fetch(
@@ -32,3 +33,4 @@ const apiLogic = (() => {
   return { queryAPI, getRandomAPOD};
 })();
 
+displayControl.tempSetImg()

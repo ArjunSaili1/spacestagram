@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+#main-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+#main-title{
+    margin: 10px;
+}
+
+#post-header{
+    
+}
+
+#main-title{
+    padding: 20px;
+    font-size: 3rem;
+}
+
+#feed{
+    display: flex;
+    justify-content: center;
+}
+
+.img-container{
+    width: 560px;
+    height: 500px;
+}
+
+img{
+    height: 100%;
+    width: 100%;
+}
+
+.feed-card{
+    border-radius: 16px;
+    background-color: red;
+}
