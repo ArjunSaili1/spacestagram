@@ -34,4 +34,4 @@ export const apiLogic = (() => {
   return { queryAPI, getRandomAPOD};
 })();
 
-displayControl.tempSetImg()
+displayControl.createFeed()
