@@ -16,7 +16,14 @@ export const displayControl = (()=>{
         for(let i = 0; i<allHearts.length; i++){
             allHearts[i].src = heart;
         }
-        document.querySelector("#test-description").textContent = temp["explanation"];
+        if(temp["explanation"].length > 500){
+            document.querySelector("#test-description").textContent = temp["explanation"].slice(0,500);
+            const seeMoreBtn = document.createElement("button");
+            const seeMoreTxt = document.createElement("h5");
+            seeMoreTxt.textContent = "...see more";
+            seeMoreBtn.appendChild(seeMoreTxt);
+            document.querySelector("#test-description").appendChild(seeMoreBtn);
+        }
         document.querySelector("#test-date").textContent = temp["date"];
     }
 
