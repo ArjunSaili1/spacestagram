@@ -1,3 +1,27 @@
+@media only screen and (max-width: 700px) {
+    .feed-card{
+        width: 450px !important; 
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    .feed-card{
+        width: 90vw!important; 
+    }
+    .media-container{
+        height: 300px !important;
+    }
+    .post-date{
+        font-size: .75em;
+    }
+    .post-title{
+        font-size: 1em;
+    }
+    .description{
+        font-size: 0.7em;
+    }
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -86,4 +110,9 @@ img{
     align-items: center;
     height: 100%;
     word-wrap: break-word;
+}
+
+iframe{
+    height: 450px;
+    width: 530px;
 }
