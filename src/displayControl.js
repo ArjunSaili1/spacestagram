@@ -17,6 +17,7 @@ export const displayControl = (()=>{
             allHearts[i].src = heart;
         }
         document.querySelector("#test-description").textContent = temp["explanation"];
+        document.querySelector("#test-date").textContent = temp["date"];
     }
 
     return {tempSetImg}
