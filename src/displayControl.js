@@ -9,8 +9,10 @@ export const displayControl = (()=>{
         cardContainer.classList.add("feed-card");
         const header = await createCardHeader(apodData);
         const mediaContainer = await createCardMediaContainer(apodData);
+        const footer = createCardFooter();
         cardContainer.appendChild(header);
         cardContainer.appendChild(mediaContainer);
+        cardContainer.appendChild(footer);
         feed.appendChild(cardContainer)
     }
 
@@ -54,6 +56,27 @@ export const displayControl = (()=>{
             mediaContainer.appendChild(errorTextContainer);
         }
         return mediaContainer;
+    }
+    
+    function createCardFooter(){
+        const footer = document.createElement('footer');
+        footer.classList.add("post-footer");
+        const likeContainer = document.createElement("span");
+        likeContainer.classList.add("like-container");
+        const heartIcon = document.createElement('img');
+        heartIcon.src = heart;
+        heartIcon.classList.add('heart-icon');
+        const likeCount = document.createElement("h5");
+        likeCount.textContent = "0 Likes";
+        likeContainer.appendChild(heartIcon);
+        likeContainer.appendChild(likeCount);
+        footer.appendChild(likeContainer);
+        heartIcon.addEventListener("click", updateLikeCount);
+        return footer;
+    }
+
+    function updateLikeCount(e){
+        e.target.nextElementSibling.textContent = "1 Like";
     }
 
     async function getAPODUrl(apodData){
