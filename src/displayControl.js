@@ -118,6 +118,12 @@ export const displayControl = (()=>{
 
     function createFeed(){
         createFeedCard();
+        createFeedCard();
+        window.addEventListener("scroll", (e) => {
+            if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 2) {
+                createFeedCard();
+            }
+        })
     }
 
     async function tempSetImg() {
