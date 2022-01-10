@@ -44,7 +44,16 @@ export const displayControl = (()=>{
             image.src = await getAPODUrl(apodData);
             mediaContainer.appendChild(image);
         }
-        return mediaContainer
+        mediaContainer.children[0].onError = function (){
+            mediaContainer.children[0].remove();
+            const errorTextContainer = document.createElement("figure");
+            errorTextContainer.classList.add("error-text-container");
+            const errorText = document.createElement("h2");
+            errorText.textContent = "Sorry, This Media Could Not Be Loaded :(";
+            errorTextContainer.appendChild(errorText);
+            mediaContainer.appendChild(errorTextContainer);
+        }
+        return mediaContainer;
     }
 
     async function getAPODUrl(apodData){
