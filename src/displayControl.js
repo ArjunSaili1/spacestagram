@@ -4,11 +4,13 @@ import heart from './remigho-like.svg'
 export const displayControl = (()=>{
 
     async function createFeedCard() {
-        const apodData = await apiLogic.getRandomAPOD()
+        const apodData = await apiLogic.getRandomAPOD();
         const cardContainer = document.createElement("div");
         cardContainer.classList.add("feed-card");
         const header = await createCardHeader(apodData);
+        const mediaContainer = await createCardMediaContainer(apodData);
         cardContainer.appendChild(header);
+        cardContainer.appendChild(mediaContainer);
         feed.appendChild(cardContainer)
     }
 
@@ -24,6 +26,34 @@ export const displayControl = (()=>{
         header.appendChild(title);
         header.appendChild(date);
         return header;
+    }
+
+    async function createCardMediaContainer(apodData){
+        const mediaContainer = document.createElement("div");
+        mediaContainer.classList.add("media-container");
+        if(apodData["media_type"] == "video"){
+            const video = document.createElement("iframe");
+            video.height = "450";
+            video.width = document.querySelector(".feed-card").offsetWidth;
+            video.src = await getAPODUrl(apodData);
+            mediaContainer.appendChild(video);
+        }
+        else{
+            const image = document.createElement("img");
+            image.classList.add("post-img");
+            image.src = await getAPODUrl(apodData);
+            mediaContainer.appendChild(image);
+        }
+        return mediaContainer
+    }
+
+    async function getAPODUrl(apodData){
+        if(apodData["hdurl"]){
+            return apodData["hdurl"];
+        }
+        else{
+            return apodData["url"];
+        }
     }
 
     function createFeed(){
