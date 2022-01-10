@@ -61,6 +61,12 @@ export const displayControl = (()=>{
     function createCardFooter(){
         const footer = document.createElement('footer');
         footer.classList.add("post-footer");
+        const likeContainer = createLikeContainer();
+        footer.appendChild(likeContainer);
+        return footer;
+    }
+
+    function createLikeContainer(){
         const likeContainer = document.createElement("span");
         likeContainer.classList.add("like-container");
         const heartIcon = document.createElement('img');
@@ -70,9 +76,8 @@ export const displayControl = (()=>{
         likeCount.textContent = "0 Likes";
         likeContainer.appendChild(heartIcon);
         likeContainer.appendChild(likeCount);
-        footer.appendChild(likeContainer);
         heartIcon.addEventListener("click", updateLikeCount);
-        return footer;
+        return likeContainer
     }
 
     function updateLikeCount(e){
