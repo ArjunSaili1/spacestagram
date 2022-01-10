@@ -3,6 +3,7 @@
     margin: 0;
     border: 0;
     box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
 }
 
 #main-header{
@@ -43,5 +44,5 @@ img{
 
 .feed-card{
     border-radius: 16px;
-    background-color: red;
+    box-shadow: 0px 0px 26px 5px rgb(0 0 0 / 9%);
 }
