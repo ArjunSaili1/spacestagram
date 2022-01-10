@@ -73,3 +73,9 @@ img{
 .post-date{
     color: grey;
 }
+
+.like-container{
+    display: flex;
+    align-items: center;
+    gap: 1%;
+}
