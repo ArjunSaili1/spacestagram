@@ -2,6 +2,34 @@ import { apiLogic } from ".";
 import heart from './remigho-like.svg'
 
 export const displayControl = (()=>{
+
+    async function createFeedCard() {
+        const apodData = await apiLogic.getRandomAPOD()
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("feed-card");
+        const header = await createCardHeader(apodData);
+        cardContainer.appendChild(header);
+        feed.appendChild(cardContainer)
+    }
+
+    async function createCardHeader(apodData){
+        const header = document.createElement("header");
+        header.classList.add("post-header");
+        const title = document.createElement("h4");
+        title.classList.add("post-title");
+        title.textContent = apodData["title"];
+        const date = document.createElement("time");
+        date.dateTime = apodData["date"];
+        date.textContent = apodData["date"];
+        header.appendChild(title);
+        header.appendChild(date);
+        return header;
+    }
+
+    function createFeed(){
+        createFeedCard();
+    }
+
     async function tempSetImg() {
         const temp = await apiLogic.getRandomAPOD()
         console.log(temp)
@@ -27,6 +55,6 @@ export const displayControl = (()=>{
         document.querySelector("#test-date").textContent = temp["date"];
     }
 
-    return {tempSetImg}
+    return {tempSetImg, createFeed}
 })()
 
