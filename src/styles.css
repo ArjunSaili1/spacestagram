@@ -79,3 +79,11 @@ img{
     align-items: center;
     gap: 1%;
 }
+
+.error-text-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    word-wrap: break-word;
+}
