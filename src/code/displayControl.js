@@ -1,9 +1,8 @@
-import heart from "./remigho-like.svg";
-
-import { apiLogic } from "./apiLogic";
+import {heart} from "../icons";
 
 export const displayControl = (() => {
   async function createFeedCard(apodData) {
+    const feed = document.querySelector("#feed");
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("feed-card");
     const header = await createCardHeader(apodData);
@@ -15,7 +14,7 @@ export const displayControl = (() => {
     feed.appendChild(cardContainer);
   }
 
-  async function createCardHeader(apodData) {
+  function createCardHeader(apodData) {
     const header = document.createElement("header");
     header.classList.add("post-header");
     const title = document.createElement("h4");
@@ -32,7 +31,7 @@ export const displayControl = (() => {
   async function createCardMediaContainer(apodData) {
     const mediaContainer = document.createElement("figure");
     mediaContainer.classList.add("media-container");
-    if (apodData.media_type == "video") {
+    if (apodData.media_type === "video") {
       const video = document.createElement("iframe");
       video.height = "450";
       video.width = document.querySelector(".feed-card").offsetWidth;
@@ -44,7 +43,7 @@ export const displayControl = (() => {
       image.src = await getAPODUrl(apodData);
       mediaContainer.appendChild(image);
     }
-    mediaContainer.children[0].onError = function () {
+    mediaContainer.children[0].onError = function() {
       mediaContainer.children[0].remove();
       const errorTextContainer = document.createElement("figure");
       errorTextContainer.classList.add("error-text-container");
@@ -66,7 +65,7 @@ export const displayControl = (() => {
     return footer;
   }
 
-  async function createCardDescription(apodData) {
+  function createCardDescription(apodData) {
     const descriptionContainer = document.createElement("div");
     descriptionContainer.classList.add("description-container");
     const description = document.createElement("figcaption");
@@ -82,6 +81,8 @@ export const displayControl = (() => {
         description.textContent = apodData.explanation;
       });
       description.appendChild(seeMoreBtn);
+    } else {
+      description.textContent = apodData.explanation;
     }
     descriptionContainer.appendChild(description);
     return descriptionContainer;
@@ -101,16 +102,15 @@ export const displayControl = (() => {
     return likeContainer;
   }
 
-  function updateLikeCount(e) {
-    if(e.target.nextElementSibling.textContent == "1 like"){
-        e.target.nextElementSibling.textContent = "0 likes";
-    }
-    else{
-        e.target.nextElementSibling.textContent = "1 Like";
+  function updateLikeCount(event) {
+    if (event.target.nextElementSibling.textContent === "1 like") {
+      event.target.nextElementSibling.textContent = "0 likes";
+    } else {
+      event.target.nextElementSibling.textContent = "1 Like";
     }
   }
 
-  async function getAPODUrl(apodData) {
+  function getAPODUrl(apodData) {
     if (apodData.hdurl) {
       return apodData.hdurl;
     } else {

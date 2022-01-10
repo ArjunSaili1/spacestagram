@@ -1,11 +1,9 @@
-import "./styles.css";
-
 export const apiLogic = (() => {
   async function queryAPI(query) {
     try {
       const apiResponse = await fetch(
         `https://api.nasa.gov/planetary/apod?api_key=RniEDW1yakFezEGAKtaMcLMz2KtS5xUKPdMUlky0&date=${query}`,
-        {mode: "cors"}
+        {mode: "cors"},
       );
       const apiResponseJSON = await apiResponse.json();
       return apiResponseJSON;
@@ -20,7 +18,7 @@ export const apiLogic = (() => {
     const startDate = new Date(1995, 5, 16);
     return new Date(
       startDate.getTime() +
-        Math.random() * (todayDate.getTime() - startDate.getTime()),
+        (Math.random() * (todayDate.getTime() - startDate.getTime())),
     ).toLocaleDateString("fr-CA");
   }
 
@@ -30,6 +28,5 @@ export const apiLogic = (() => {
     return randomAPOD;
   }
 
-  return { queryAPI, getRandomAPOD};
+  return {queryAPI, getRandomAPOD};
 })();
-

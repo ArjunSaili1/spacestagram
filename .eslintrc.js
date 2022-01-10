@@ -3,11 +3,12 @@ module.exports = {
         "browser": true,
         "es2021": true
     },
-    "extends": ["plugin:@shopify/prettier", "plugin:@shopify/esnext"],
+    "extends": ["plugin:@shopify/esnext"],
     "parserOptions": {
         "ecmaVersion": 13,
         "sourceType": "module"
     },
     "rules": {
-    }
+    },
+    "plugins": ["prettier",]
 };
