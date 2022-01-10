@@ -8,6 +8,7 @@
 
 #main-header{
     display: flex;
+    align-items: center;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
@@ -19,6 +20,8 @@
 }
 
 .post-header{
+    display: flex;
+    justify-content: space-between;
     padding: 3% 3% 3% 4%;
 }
 
@@ -29,11 +32,13 @@
 
 #feed{
     display: flex;
-    justify-content: center;
+    gap: 10vw;
+    flex-direction:column;
+    align-items: center;
 }
 
 .img-container{
-    height: 500px;
+    height: 450px;
 }
 
 img{
@@ -44,7 +49,7 @@ img{
 .feed-card{
     border-radius: 16px;
     box-shadow: 0px 0px 26px 5px rgb(0 0 0 / 9%);
-    width: 560px;
+    width: 530px;
 }
 
 .heart-icon{
@@ -55,10 +60,16 @@ img{
 
 .description{
     word-wrap: break-word;
+    line-height: 1.4em;
     font-weight: 500;
+    font-size: 14px;
 }
 
 .post-footer{
     padding: 0 2% 0 2%;
     margin: 5px 0px 10px 0px;
+}
+
+.post-date{
+    color: grey;
 }
