@@ -2,7 +2,6 @@ import {heart} from "../icons";
 
 export const displayControl = (() => {
   function createFeedCard(apodData) {
-    console.log(apodData)
     const feed = document.querySelector("#feed");
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("feed-card");
@@ -22,6 +21,7 @@ export const displayControl = (() => {
     title.classList.add("post-title");
     title.textContent = apodData.title;
     const date = document.createElement("time");
+    date.classList.add("post-date");
     date.dateTime = apodData.date;
     date.textContent = apodData.date;
     header.appendChild(title);
@@ -34,8 +34,6 @@ export const displayControl = (() => {
     mediaContainer.classList.add("media-container");
     if (apodData.media_type === "video") {
       const video = document.createElement("iframe");
-      video.height = "450";
-      video.width = "530px"
       video.src = getAPODUrl(apodData);
       mediaContainer.appendChild(video);
     } else {
