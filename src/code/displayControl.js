@@ -1,13 +1,14 @@
 import {heart} from "../icons";
 
 export const displayControl = (() => {
-  async function createFeedCard(apodData) {
+  function createFeedCard(apodData) {
+    console.log(apodData)
     const feed = document.querySelector("#feed");
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("feed-card");
-    const header = await createCardHeader(apodData);
-    const mediaContainer = await createCardMediaContainer(apodData);
-    const footer = await createCardFooter(apodData);
+    const header = createCardHeader(apodData);
+    const mediaContainer = createCardMediaContainer(apodData);
+    const footer = createCardFooter(apodData);
     cardContainer.appendChild(header);
     cardContainer.appendChild(mediaContainer);
     cardContainer.appendChild(footer);
@@ -28,19 +29,19 @@ export const displayControl = (() => {
     return header;
   }
 
-  async function createCardMediaContainer(apodData) {
+  function createCardMediaContainer(apodData) {
     const mediaContainer = document.createElement("figure");
     mediaContainer.classList.add("media-container");
     if (apodData.media_type === "video") {
       const video = document.createElement("iframe");
       video.height = "450";
-      video.width = document.querySelector(".feed-card").offsetWidth;
-      video.src = await getAPODUrl(apodData);
+      video.width = "530px"
+      video.src = getAPODUrl(apodData);
       mediaContainer.appendChild(video);
     } else {
       const image = document.createElement("img");
       image.classList.add("post-img");
-      image.src = await getAPODUrl(apodData);
+      image.src = getAPODUrl(apodData);
       mediaContainer.appendChild(image);
     }
     mediaContainer.children[0].onError = function() {
@@ -55,12 +56,12 @@ export const displayControl = (() => {
     return mediaContainer;
   }
 
-  async function createCardFooter(apodData) {
+  function createCardFooter(apodData) {
     const footer = document.createElement("footer");
     footer.classList.add("post-footer");
     const likeContainer = createLikeContainer();
     footer.appendChild(likeContainer);
-    const description = await createCardDescription(apodData);
+    const description = createCardDescription(apodData);
     footer.appendChild(description);
     return footer;
   }

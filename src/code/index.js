@@ -4,14 +4,14 @@ import "./styles.css";
 
 const App = (() => {
   async function createFeed() {
-    await displayControl.createFeedCard(await apiLogic.getRandomAPOD());
-    await displayControl.createFeedCard(await apiLogic.getRandomAPOD());
+    displayControl.createFeedCard(await apiLogic.getRandomAPOD());
+    displayControl.createFeedCard(await apiLogic.getRandomAPOD());
     window.addEventListener("scroll", updateFeed);
   }
 
   async function updateFeed() {
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
-      await displayControl.createFeedCard(await apiLogic.getRandomAPOD());
+      displayControl.createFeedCard(await apiLogic.getRandomAPOD());
     }
   }
   return {createFeed};
