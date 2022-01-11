@@ -96,7 +96,7 @@ export const displayControl = (() => {
     const heartIcon = likeContainer.children[0];
     heartIcon.classList.add("heart-icon");
     const heartSVGPath = heartIcon.children[0].children[0];
-    heartIcon.addEventListener("click", () => {updateLikeCount(heartSVGPath, likeCount)});
+    heartIcon.addEventListener("click", () => { updateLikeCount(heartSVGPath, likeCount); });
     likeContainer.appendChild(likeCount);
     return likeContainer;
   }
