@@ -95,13 +95,13 @@ export const displayControl = (() => {
     likeContainer.innerHTML += heart;
     const heartIcon = likeContainer.children[0];
     heartIcon.classList.add("heart-icon");
-    heartIcon.addEventListener("click", (e) => {updateLikeCount(e, likeCount)});
+    const heartSVGPath = heartIcon.children[0].children[0];
+    heartIcon.addEventListener("click", () => {updateLikeCount(heartSVGPath, likeCount)});
     likeContainer.appendChild(likeCount);
     return likeContainer;
   }
 
-  function updateLikeCount(heartIconEvent, likeCount) {
-    const heartSVGPath = document.querySelector("#path18741");
+  function updateLikeCount(heartSVGPath, likeCount) {
     if (likeCount.textContent === "1 like") {
       likeCount.textContent = "0 likes";
       heartSVGPath.style.fill = "none";
