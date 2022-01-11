@@ -3,12 +3,27 @@ import {heart} from "../icons";
 export const displayControl = (() => {
 
   let cardContainer;
+  const feed = document.querySelector("#feed");
+
+  function createErrorCard(){
+    feed.classList.add("error-feed");
+    cardContainer = document.createElement("section");
+    cardContainer.classList.add("feed-card");
+    const errorContainer = document.createElement("div");
+    errorContainer.classList.add("error-text-container");
+    errorContainer.classList.add("error-card");
+    const errorText = document.createElement("h3");
+    errorText.classList.add('error-text');
+    errorText.textContent = "Sorry, there has been an error from the NASA APOD API.";
+    errorContainer.appendChild(errorText);
+    cardContainer.appendChild(errorContainer);
+    feed.appendChild(cardContainer);
+  }
 
   function createFeedCard(apodData) {
-    const feed = document.querySelector("#feed");
-    cardContainer = document.createElement("div");
-    cardContainer.classList.add(apodData["date"]);
+    cardContainer = document.createElement("section");
     cardContainer.classList.add("feed-card");
+    cardContainer.classList.add(apodData["date"]);
     const header = createCardHeader(apodData);
     const mediaContainer = createCardMediaContainer(apodData);
     const footer = createCardFooter(apodData);
@@ -20,7 +35,6 @@ export const displayControl = (() => {
   }
 
   function bindLikeEvents(){
-    const mediaContainer = cardContainer.children[1];
     const heartSVG = cardContainer.children[2].children[0].children[0];
     const heartSVGPath = heartSVG.children[0].children[0];
     const likeCount = heartSVG.nextElementSibling;
@@ -132,5 +146,5 @@ export const displayControl = (() => {
     }
   }
 
-  return {createFeedCard};
+  return {createFeedCard, createErrorCard};
 })();

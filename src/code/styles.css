@@ -116,3 +116,12 @@ iframe{
     height: 100%;
     width: 100%;
 }
+
+.error-card{
+    height: 30vh;
+    margin: 50px;
+}
+
+.error-text{
+    text-align: center;
+}
