@@ -1,9 +1,13 @@
 import {heart} from "../icons";
 
 export const displayControl = (() => {
+
+  let cardContainer;
+
   function createFeedCard(apodData) {
     const feed = document.querySelector("#feed");
-    const cardContainer = document.createElement("div");
+    cardContainer = document.createElement("div");
+    cardContainer.classList.add(apodData["date"]);
     cardContainer.classList.add("feed-card");
     const header = createCardHeader(apodData);
     const mediaContainer = createCardMediaContainer(apodData);
@@ -11,7 +15,17 @@ export const displayControl = (() => {
     cardContainer.appendChild(header);
     cardContainer.appendChild(mediaContainer);
     cardContainer.appendChild(footer);
+    bindLikeEvents();
     feed.appendChild(cardContainer);
+  }
+
+  function bindLikeEvents(){
+    const mediaContainer = cardContainer.children[1];
+    const heartSVG = cardContainer.children[2].children[0].children[0];
+    const heartSVGPath = heartSVG.children[0].children[0];
+    const likeCount = heartSVG.nextElementSibling;
+    heartSVG.addEventListener("click", () => { updateLikeCount(heartSVGPath, likeCount); });
+    cardContainer.addEventListener("dblclick", () => { updateLikeCount(heartSVGPath, likeCount); });
   }
 
   function createCardHeader(apodData) {
@@ -95,13 +109,12 @@ export const displayControl = (() => {
     likeContainer.innerHTML += heart;
     const heartIcon = likeContainer.children[0];
     heartIcon.classList.add("heart-icon");
-    const heartSVGPath = heartIcon.children[0].children[0];
-    heartIcon.addEventListener("click", () => { updateLikeCount(heartSVGPath, likeCount); });
     likeContainer.appendChild(likeCount);
     return likeContainer;
   }
 
   function updateLikeCount(heartSVGPath, likeCount) {
+    console.log(heartSVGPath)
     if (likeCount.textContent === "1 like") {
       likeCount.textContent = "0 likes";
       heartSVGPath.style.fill = "none";
