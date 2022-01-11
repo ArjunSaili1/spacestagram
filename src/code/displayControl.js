@@ -90,22 +90,24 @@ export const displayControl = (() => {
   function createLikeContainer() {
     const likeContainer = document.createElement("span");
     likeContainer.classList.add("like-container");
-    const heartIcon = document.createElement("img");
-    heartIcon.src = heart;
-    heartIcon.classList.add("heart-icon");
     const likeCount = document.createElement("h5");
     likeCount.textContent = "0 Likes";
-    likeContainer.appendChild(heartIcon);
+    likeContainer.innerHTML += heart;
+    const heartIcon = likeContainer.children[0];
+    heartIcon.classList.add("heart-icon");
+    heartIcon.addEventListener("click", (e) => {updateLikeCount(e, likeCount)});
     likeContainer.appendChild(likeCount);
-    heartIcon.addEventListener("click", updateLikeCount);
     return likeContainer;
   }
 
-  function updateLikeCount(event) {
-    if (event.target.nextElementSibling.textContent === "1 like") {
-      event.target.nextElementSibling.textContent = "0 likes";
+  function updateLikeCount(heartIconEvent, likeCount) {
+    const heartSVGPath = document.querySelector("#path18741");
+    if (likeCount.textContent === "1 like") {
+      likeCount.textContent = "0 likes";
+      heartSVGPath.style.fill = "none";
     } else {
-      event.target.nextElementSibling.textContent = "1 Like";
+      likeCount.textContent = "1 like";
+      heartSVGPath.style.fill = "red";
     }
   }
 
