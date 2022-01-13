@@ -162,5 +162,5 @@ export const displayControl = (() => {
     }
   }
 
-  return {createFeedCard, createErrorCard, createLoader, removeLoader};
+  return {createFeedCard, createErrorCard, createLoader};
 })();

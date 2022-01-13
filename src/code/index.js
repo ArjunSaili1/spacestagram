@@ -4,15 +4,16 @@ import "./styles.css";
 
 const App = (() => {
 
+  let postMade = false;
+
   function createFeed() {
+    displayControl.createLoader();
     newPost();
     newPost();
     window.addEventListener("scroll", updateFeed);
   }
 
   async function newPost() {
-    setTimeout(1000);
-    displayControl.createLoader();
     const [newPostData, apiError] = await apiLogic.getRandomAPOD();
     if (apiError) {
       displayControl.createErrorCard();
@@ -24,6 +25,9 @@ const App = (() => {
   function updateFeed() {
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
       newPost();
+      window.removeEventListener("scroll", updateFeed);
+      displayControl.createLoader();
+      setTimeout(function timeOut(){window.addEventListener("scroll", updateFeed)}, 100)
     }
   }
   return {createFeed};
