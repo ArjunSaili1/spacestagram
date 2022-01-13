@@ -4,12 +4,11 @@ export const apiLogic = (() => {
       const apiResponse = await fetch(
         `https://api.nasa.gov/planetary/apod?api_key=RniEDW1yakFezEGAKtaMcLMz2KtS5xUKPdMUlky0&date=${query}`,
         {mode: "cors"},
-      )
+      );
       const apiResponseJSON = await apiResponse.json();
       return [apiResponseJSON, null];
-    } catch(error){
-      console.error(error);
-      return[null, error];
+    } catch (error) {
+      return [null, error];
     }
   }
 

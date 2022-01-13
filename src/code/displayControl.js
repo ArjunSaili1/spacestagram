@@ -3,9 +3,24 @@ import {heart} from "../icons";
 export const displayControl = (() => {
 
   let cardContainer;
+  let loadText;
   const feed = document.querySelector("#feed");
 
-  function createErrorCard(){
+  function createLoader() {
+    loadText = document.createElement('h3');
+    loadText.textContent = "Loading...";
+    loadText.classList.add("loading");
+    feed.appendChild(loadText);
+  }
+
+  function removeLoader() {
+    const allLoaders = document.querySelectorAll(".loading");
+    for (let i = 0; i < allLoaders.length; i++) {
+      allLoaders[i].remove();
+    }
+  }
+
+  function createErrorCard() {
     feed.classList.add("error-feed");
     cardContainer = document.createElement("section");
     cardContainer.classList.add("feed-card");
@@ -17,13 +32,14 @@ export const displayControl = (() => {
     errorText.textContent = "Sorry, there has been an error from the NASA APOD API.";
     errorContainer.appendChild(errorText);
     cardContainer.appendChild(errorContainer);
+    removeLoader();
     feed.appendChild(cardContainer);
   }
 
   function createFeedCard(apodData) {
     cardContainer = document.createElement("section");
     cardContainer.classList.add("feed-card");
-    cardContainer.classList.add(apodData["date"]);
+    cardContainer.classList.add(apodData.date);
     const header = createCardHeader(apodData);
     const mediaContainer = createCardMediaContainer(apodData);
     const footer = createCardFooter(apodData);
@@ -31,10 +47,11 @@ export const displayControl = (() => {
     cardContainer.appendChild(mediaContainer);
     cardContainer.appendChild(footer);
     bindLikeEvents();
+    removeLoader();
     feed.appendChild(cardContainer);
   }
 
-  function bindLikeEvents(){
+  function bindLikeEvents() {
     const heartSVG = cardContainer.children[2].children[0].children[0];
     const heartSVGPath = heartSVG.children[0].children[0];
     const likeCount = heartSVG.nextElementSibling;
@@ -128,7 +145,6 @@ export const displayControl = (() => {
   }
 
   function updateLikeCount(heartSVGPath, likeCount) {
-    console.log(heartSVGPath)
     if (likeCount.textContent === "1 like") {
       likeCount.textContent = "0 likes";
       heartSVGPath.style.fill = "none";
@@ -146,5 +162,5 @@ export const displayControl = (() => {
     }
   }
 
-  return {createFeedCard, createErrorCard};
+  return {createFeedCard, createErrorCard, createLoader, removeLoader};
 })();

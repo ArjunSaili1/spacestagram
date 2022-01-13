@@ -4,29 +4,25 @@ import "./styles.css";
 
 const App = (() => {
 
-  let errored = false;
-
   function createFeed() {
     newPost();
     newPost();
     window.addEventListener("scroll", updateFeed);
   }
 
-  async function newPost(){
+  async function newPost() {
+    setTimeout(1000);
+    displayControl.createLoader();
     const [newPostData, apiError] = await apiLogic.getRandomAPOD();
-    if(!errored){
-      if(apiError){
-        displayControl.createErrorCard();
-        errored = true;
-      }
-      else{
-        displayControl.createFeedCard(newPostData);
-      }
+    if (apiError) {
+      displayControl.createErrorCard();
+    } else {
+      displayControl.createFeedCard(newPostData);
     }
   }
 
   function updateFeed() {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
       newPost();
     }
   }
