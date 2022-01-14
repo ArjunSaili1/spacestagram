@@ -1,5 +1,4 @@
-import {heart} from "../icons";
-import {logo} from "../icons";
+import {heart, logo} from "../icons";
 
 export const displayControl = (() => {
 
@@ -7,7 +6,7 @@ export const displayControl = (() => {
   const loadingAnimation = document.querySelector(".loading-animation");
   let feed;
 
-  function createFeed(){
+  function createFeed() {
     const main = document.createElement('main');
     feed = document.createElement('div');
     feed.id = 'feed';
@@ -15,7 +14,7 @@ export const displayControl = (() => {
     document.body.appendChild(main);
   }
 
-  function createLogoHeader(){
+  function createLogoHeader() {
     const header = document.createElement("header");
     header.id = "main-header";
     const likedAPODAnchor = document.createElement('a');
@@ -32,7 +31,7 @@ export const displayControl = (() => {
     searchDateText.textContent = "Search by date";
     searchAnchor.appendChild(searchDateText);
     header.appendChild(likedAPODAnchor);
-    header.innerHTML+=logo;
+    header.innerHTML += logo;
     header.appendChild(searchAnchor);
     document.body.appendChild(header);
   }

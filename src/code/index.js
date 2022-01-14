@@ -23,12 +23,11 @@ const App = (() => {
   }
 
   function updateFeed() {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
-      newPost();
-      window.removeEventListener("scroll", updateFeed);
-      displayControl.createLoader();
-      setTimeout(function timeOut(){window.addEventListener("scroll", updateFeed)}, 600)
-    }
+    if (window.innerHeight + window.scrollY < document.body.scrollHeight) { return; }
+    newPost();
+    window.removeEventListener("scroll", updateFeed);
+    displayControl.createLoader();
+    setTimeout(function timeOut() { window.addEventListener("scroll", updateFeed); }, 600);
   }
   return {appStartup};
 })();
