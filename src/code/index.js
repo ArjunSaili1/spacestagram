@@ -27,7 +27,7 @@ const App = (() => {
       newPost();
       window.removeEventListener("scroll", updateFeed);
       displayControl.createLoader();
-      setTimeout(function timeOut(){window.addEventListener("scroll", updateFeed)}, 1000)
+      setTimeout(function timeOut(){window.addEventListener("scroll", updateFeed)}, 600)
     }
   }
   return {appStartup};
