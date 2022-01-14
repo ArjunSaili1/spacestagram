@@ -4,9 +4,9 @@ import "./styles.css";
 
 const App = (() => {
 
-  let postMade = false;
-
-  function createFeed() {
+  function appStartup() {
+    displayControl.createLogoHeader();
+    displayControl.createFeed();
     displayControl.createLoader();
     newPost();
     newPost();
@@ -30,7 +30,7 @@ const App = (() => {
       setTimeout(function timeOut(){window.addEventListener("scroll", updateFeed)}, 100)
     }
   }
-  return {createFeed};
+  return {appStartup};
 })();
 
-App.createFeed();
+App.appStartup();
