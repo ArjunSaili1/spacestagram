@@ -126,3 +126,40 @@ iframe{
 .page-btn{
     font-size: 15px;
 }
+
+.loading-animation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orbit{
+    display: flex;
+    width: 150px;
+    padding: 10px;
+    animation: spin 1.3s infinite linear;
+}
+
+.rocket{
+    position: absolute;
+    height: 30%;
+    left: 50px;
+    transform: rotate(145deg);
+}
+
+@keyframes spin {
+    100%{
+        transform: rotate(360deg);
+    }
+    
+}
+
+.earth{
+    animation: antispin 1.3s infinite linear;
+}
+
+@keyframes antispin {
+    100%{
+        transform: rotate(-360deg);
+    }
+}

@@ -4,7 +4,7 @@ import {logo} from "../icons";
 export const displayControl = (() => {
 
   let cardContainer;
-  let loadText;
+  const loadingAnimation = document.querySelector(".loading-animation");
   let feed;
 
   function createFeed(){
@@ -38,17 +38,12 @@ export const displayControl = (() => {
   }
 
   function createLoader() {
-    loadText = document.createElement('h3');
-    loadText.textContent = "Loading...";
-    loadText.classList.add("loading");
-    feed.appendChild(loadText);
+    loadingAnimation.remove();
+    feed.appendChild(loadingAnimation);
   }
 
   function removeLoader() {
-    const allLoaders = document.querySelectorAll(".loading");
-    for (let i = 0; i < allLoaders.length; i++) {
-      allLoaders[i].remove();
-    }
+    loadingAnimation.remove();
   }
 
   function createErrorCard() {
@@ -145,8 +140,8 @@ export const displayControl = (() => {
     descriptionContainer.classList.add("description-container");
     const description = document.createElement("figcaption");
     description.classList.add("description");
-    if (apodData.explanation.length > 500) {
-      description.textContent = apodData.explanation.slice(0, 500);
+    if (apodData.explanation.length > 300) {
+      description.textContent = apodData.explanation.slice(0, 300);
       const seeMoreBtn = document.createElement("button");
       const seeMoreTxt = document.createElement("h5");
       seeMoreTxt.textContent = "...see more";
