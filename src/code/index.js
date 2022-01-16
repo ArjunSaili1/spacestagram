@@ -7,7 +7,6 @@ const App = (() => {
   function appStartup() {
     displayControl.createLogoHeader();
     displayControl.createFeed();
-    displayControl.createLoader();
     newPost();
     newPost();
     window.addEventListener("scroll", updateFeed);
@@ -16,9 +15,9 @@ const App = (() => {
   async function newPost() {
     const [newPostData, apiError] = await apiLogic.getRandomAPOD();
     if (apiError) {
-      displayControl.createErrorCard();
+      displayControl.showErrorCard();
     } else {
-      displayControl.createFeedCard(newPostData);
+      displayControl.showFeedCard(newPostData);
     }
   }
 
@@ -26,8 +25,7 @@ const App = (() => {
     if (window.innerHeight + window.scrollY < document.body.scrollHeight) { return; }
     newPost();
     window.removeEventListener("scroll", updateFeed);
-    displayControl.createLoader();
-    setTimeout(function timeOut() { window.addEventListener("scroll", updateFeed); }, 600);
+    setTimeout(function buffer() { window.addEventListener("scroll", updateFeed); }, 500);
   }
   return {appStartup};
 })();
