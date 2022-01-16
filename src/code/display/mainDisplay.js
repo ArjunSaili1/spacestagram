@@ -76,7 +76,6 @@ export const mainDisplay = (() => {
   }
 
   function closeSearch(e){
-    document.querySelector(".page-btn").style.color - "unset";
     document.body.style.overflow = 'unset';
     document.querySelector(".search-overlay-container").style.display = "none";
     document.querySelector("#search-btn-heading").style.color = "unset";
