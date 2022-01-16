@@ -19,7 +19,29 @@ const App = (() => {
   function bindEvents() {
     window.addEventListener("scroll", updateFeed);
     document.querySelector("#liked-apod-text").addEventListener("click", openLikedPhotos);
+    document.querySelector("#search-anchor").addEventListener("click", (e)=>{
+      mainDisplay.createSearchOverlay(e)
+    document.querySelector(".search-form").addEventListener("submit", callSearchAPI);
+  });
+  }
 
+  async function callSearchAPI(e){
+    e.preventDefault();
+    const dateValue = e.path[0].children[0].value;
+    if(dateValue){
+      feed.innerHTML = '';
+      e.path[3].style.display = 'none';
+      document.body.style.overflow = 'unset';
+      const [searchData, apiError] = await apiLogic.queryAPI(dateValue);
+      window.removeEventListener("scroll", updateFeed);
+      if (apiError) {
+        feed.appendChild(cards.createErrorCard());
+      }
+      else{
+        searchData.likes = 0;
+        feed.appendChild(cards.createFeedCard(searchData));
+      }
+    }
   }
 
   function openLikedPhotos(event) {

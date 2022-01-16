@@ -37,5 +37,35 @@ export const mainDisplay = (() => {
 
   function getFeed() { return feed; }
 
-  return {createLogoHeader, createFeed, getFeed};
+  function createSearchOverlay(e){
+    e.target.style.color = "green";
+    const overlay = document.createElement('div');
+    overlay.classList.add("search-overlay-container");
+    const popUp = document.createElement("div");
+    popUp.classList.add("pop-up");
+    const dateContainer = document.createElement("div");
+    dateContainer.classList.add("date-time-info");
+    const dateSearchHeading = document.createElement("h3");
+    dateSearchHeading.classList.add("enter-date-text");
+    dateSearchHeading.textContent = "Please enter a seach date";
+    const searchForm = document.createElement("form");
+    const dateInput = document.createElement("input");
+    dateInput.type = "date";
+    dateInput.classList.add("date-input");
+    const searchBtn = document.createElement("button");
+    searchBtn.type = "submit";
+    searchBtn.textContent = "Search";
+    searchBtn.classList.add("search-btn");
+    searchForm.classList.add("search-form")
+    searchForm.appendChild(dateInput);
+    searchForm.appendChild(searchBtn);
+    dateContainer.appendChild(dateSearchHeading);
+    dateContainer.appendChild(searchForm);
+    popUp.appendChild(dateContainer);
+    overlay.appendChild(popUp)
+    document.body.style.overflow = "hidden";
+    document.body.appendChild(overlay);
+  }
+
+  return {createLogoHeader, createFeed, createSearchOverlay, getFeed};
 })();

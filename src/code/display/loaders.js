@@ -10,7 +10,7 @@ export const loaders = (() => {
   }
 
   async function removeLoader() {
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    await new Promise((resolve) => setTimeout(resolve, 300));
     loadingAnimation.remove();
   }
   return {createLoader, removeLoader};

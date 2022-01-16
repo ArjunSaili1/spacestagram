@@ -2,6 +2,10 @@
     .feed-card{
         width: 450px !important; 
     }
+/*     .pop-up{
+        width: 60vw !important; 
+        padding: 20px !important; 
+    } */
 }
 
 @media only screen and (max-width: 470px) {
@@ -20,6 +24,9 @@
     .description{
         font-size: 0.7em;
     }
+/*     .pop-up{
+        width: 70vw !important; 
+    } */
 }
 
 *{
@@ -28,6 +35,11 @@
     border: 0;
     box-sizing: border-box;
     font-family: Helvetica, sans-serif;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
 }
 
 #main-header{
@@ -162,4 +174,63 @@ iframe{
     100%{
         transform: rotate(-360deg);
     }
+}
+
+.search-overlay-container{
+    position: fixed;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(105,105,105,0.65);
+    top: 0;
+}
+
+.pop-up{
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    width: 300px;
+    background-color: white;
+    border: 3px solid black;
+    height: auto;
+}
+
+.date-time-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+}
+
+.enter-date-text{
+    font-size: 20px;
+}
+
+.search-btn{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+button{
+    cursor: pointer;
+}
+
+.search-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.date-input{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
 }
