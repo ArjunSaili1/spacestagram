@@ -189,7 +189,8 @@ iframe{
 }
 
 .pop-up{
-    padding: 30px;
+    flex-direction: column;
+    padding: 10px 30px 30px 30px;
     display: flex;
     justify-content: center;
     border-radius: 10px;
@@ -233,4 +234,15 @@ button{
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
+}
+
+.close-btn-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: -10px;
+}
+
+.close-btn{
+    font-size: 30px;
+    background-color: unset;
 }

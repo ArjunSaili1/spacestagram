@@ -14,15 +14,16 @@ export const mainDisplay = (() => {
     likedAPODHeading.id = 'liked-apod-text';
     likedAPODHeading.textContent = "Liked Photos";
     likedAPODAnchor.appendChild(likedAPODHeading);
-    const searchAnchor = document.createElement('a');
-    searchAnchor.id = 'search-anchor';
-    const searchDateText = document.createElement('h3');
-    searchDateText.classList.add("page-btn");
-    searchDateText.textContent = "Search by date";
-    searchAnchor.appendChild(searchDateText);
+    const searchBtn = document.createElement('button');
+    const searchBtnHeading = document.createElement('h3');
+    searchBtn.id = 'search-btn';
+    searchBtnHeading.id = 'search-btn-heading';
+    searchBtnHeading.classList.add("page-btn");
+    searchBtnHeading.textContent = "Search by date";
+    searchBtn.appendChild(searchBtnHeading);
     header.appendChild(likedAPODAnchor);
     header.innerHTML += logo;
-    header.appendChild(searchAnchor);
+    header.appendChild(searchBtn);
     document.body.appendChild(header);
   }
 
@@ -43,6 +44,12 @@ export const mainDisplay = (() => {
     overlay.classList.add("search-overlay-container");
     const popUp = document.createElement("div");
     popUp.classList.add("pop-up");
+    const closeBtnContainer = document.createElement("div");
+    closeBtnContainer.classList.add("close-btn-container");
+    const closeBtn = document.createElement("button");
+    closeBtn.classList.add("close-btn");
+    closeBtn.innerHTML = "&times";
+    closeBtnContainer.appendChild(closeBtn);
     const dateContainer = document.createElement("div");
     dateContainer.classList.add("date-time-info");
     const dateSearchHeading = document.createElement("h3");
@@ -61,11 +68,19 @@ export const mainDisplay = (() => {
     searchForm.appendChild(searchBtn);
     dateContainer.appendChild(dateSearchHeading);
     dateContainer.appendChild(searchForm);
+    popUp.appendChild(closeBtnContainer);
     popUp.appendChild(dateContainer);
     overlay.appendChild(popUp)
     document.body.style.overflow = "hidden";
     document.body.appendChild(overlay);
   }
 
-  return {createLogoHeader, createFeed, createSearchOverlay, getFeed};
+  function closeSearch(e){
+    document.querySelector(".page-btn").style.color - "unset";
+    document.body.style.overflow = 'unset';
+    document.querySelector(".search-overlay-container").style.display = "none";
+    document.querySelector("#search-btn-heading").style.color = "unset";
+  }
+
+  return {createLogoHeader, createFeed, createSearchOverlay, closeSearch, getFeed};
 })();
