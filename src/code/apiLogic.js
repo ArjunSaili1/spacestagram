@@ -1,18 +1,18 @@
-import {displayControl} from "./displayControl";
+import {loaders} from "./display/loaders";
 
 export const apiLogic = (() => {
   async function queryAPI(query) {
-    displayControl.createLoader();
+    loaders.createLoader();
     try {
       const apiResponse = await fetch(
         `https://api.nasa.gov/planetary/apod?api_key=RniEDW1yakFezEGAKtaMcLMz2KtS5xUKPdMUlky0&date=${query}`,
         {mode: "cors"},
       );
       const apiResponseJSON = await apiResponse.json();
-      await displayControl.removeLoader();
+      await loaders.removeLoader();
       return [apiResponseJSON, null];
     } catch (error) {
-      displayControl.removeLoader();
+      loaders.removeLoader();
       return [null, error];
     }
   }
