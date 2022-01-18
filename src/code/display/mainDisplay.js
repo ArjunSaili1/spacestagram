@@ -61,7 +61,7 @@ export const mainDisplay = (() => {
     const dateInput = document.createElement("input");
     dateInput.type = "date";
     dateInput.min = "1995-06-16";
-    const todayDate = new Date().toLocaleDateString("fr-CA");;
+    const todayDate = new Date().toLocaleDateString("fr-CA");
     dateInput.max = todayDate;
     dateInput.classList.add("date-input");
     const searchBtn = document.createElement("button");

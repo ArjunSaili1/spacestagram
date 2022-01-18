@@ -1,6 +1,6 @@
+import {earth, rocket} from "../../icons";
+
 import {mainDisplay} from "./mainDisplay";
-import { earth } from "../../icons";
-import { rocket } from "../../icons";
 
 export const loaders = (() => {
 
@@ -22,7 +22,7 @@ export const loaders = (() => {
     loadingAnimationContainer.appendChild(orbit);
   }
 
-  function showLoader(){
+  function showLoader() {
     mainDisplay.getFeed().appendChild(loadingAnimationContainer);
   }
 

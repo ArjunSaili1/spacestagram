@@ -2,7 +2,7 @@ import {apiLogic} from "./apiLogic";
 import {mainDisplay} from "./display/mainDisplay";
 import {cards} from "./display/cards";
 import "./styles.css";
-import { loaders } from "./display/loaders";
+import {loaders} from "./display/loaders";
 
 const App = (() => {
 
@@ -31,16 +31,16 @@ const App = (() => {
     document.querySelector("#main-logo").addEventListener("click", resetFeed);
   }
 
-  function openSearch(event){
+  function openSearch(event) {
     mainDisplay.createSearchOverlay(event);
-    document.querySelector(".search-form").addEventListener("submit", callSearchAPI)
+    document.querySelector(".search-form").addEventListener("submit", callSearchAPI);
     document.querySelector(".close-btn").addEventListener("click", mainDisplay.resetBtns);
   }
 
   async function callSearchAPI(event) {
     event.preventDefault();
     const dateValue = event.path[0].children[0].value;
-    document.querySelector(".search-btn").removeEventListener("click", callSearchAPI)
+    document.querySelector(".search-btn").removeEventListener("click", callSearchAPI);
     if (dateValue) {
       feed.innerHTML = '';
       mainDisplay.resetBtns();
