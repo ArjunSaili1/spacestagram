@@ -23,21 +23,24 @@ const App = (() => {
     newPost();
     newPost();
     window.addEventListener("scroll", updateFeed);
+    document.querySelector("#open-search-btn").addEventListener("click", openSearch);
   }
 
   function bindEvents() {
     document.querySelector("#liked-apod-text").addEventListener("click", openLikedPhotos);
-    document.querySelector("#search-btn").addEventListener("click", (event) => {
-      mainDisplay.createSearchOverlay(event);
-      document.querySelector(".search-form").addEventListener("submit", callSearchAPI);
-      document.querySelector(".close-btn").addEventListener("click", mainDisplay.resetBtns);
-    });
     document.querySelector("#main-logo").addEventListener("click", resetFeed);
+  }
+
+  function openSearch(event){
+    mainDisplay.createSearchOverlay(event);
+    document.querySelector(".search-form").addEventListener("submit", callSearchAPI)
+    document.querySelector(".close-btn").addEventListener("click", mainDisplay.resetBtns);
   }
 
   async function callSearchAPI(event) {
     event.preventDefault();
     const dateValue = event.path[0].children[0].value;
+    document.querySelector(".search-btn").removeEventListener("click", callSearchAPI)
     if (dateValue) {
       feed.innerHTML = '';
       mainDisplay.resetBtns();

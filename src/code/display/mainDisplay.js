@@ -15,16 +15,16 @@ export const mainDisplay = (() => {
     likedAPODHeading.id = 'liked-apod-text';
     likedAPODHeading.textContent = "Liked Photos";
     likedAPODAnchor.appendChild(likedAPODHeading);
-    const searchBtn = document.createElement('button');
+    const openSearchBtn = document.createElement('button');
     const searchBtnHeading = document.createElement('h3');
-    searchBtn.id = 'search-btn';
+    openSearchBtn.id = 'open-search-btn';
     searchBtnHeading.id = 'search-btn-heading';
     searchBtnHeading.classList.add("page-btn");
     searchBtnHeading.textContent = "Search by date";
-    searchBtn.appendChild(searchBtnHeading);
+    openSearchBtn.appendChild(searchBtnHeading);
     header.appendChild(likedAPODAnchor);
     header.innerHTML += logo;
-    header.appendChild(searchBtn);
+    header.appendChild(openSearchBtn);
     document.body.appendChild(header);
   }
 
@@ -60,10 +60,13 @@ export const mainDisplay = (() => {
     const searchForm = document.createElement("form");
     const dateInput = document.createElement("input");
     dateInput.type = "date";
+    dateInput.min = "1995-06-16";
+    const todayDate = new Date().toLocaleDateString("fr-CA");;
+    dateInput.max = todayDate;
     dateInput.classList.add("date-input");
     const searchBtn = document.createElement("button");
-    searchBtn.type = "submit";
     searchBtn.textContent = "Search";
+    searchBtn.type = "submit";
     searchBtn.classList.add("search-btn");
     searchForm.classList.add("search-form");
     searchForm.appendChild(dateInput);
@@ -75,11 +78,12 @@ export const mainDisplay = (() => {
     overlay.appendChild(popUp);
     document.body.style.overflow = "hidden";
     document.body.appendChild(overlay);
+    return overlay;
   }
 
   function closeSearch() {
     document.body.style.overflow = 'unset';
-    document.querySelector(".search-overlay-container").style.display = "none";
+    document.querySelector(".search-overlay-container").remove();
   }
 
   function resetBtns() {
