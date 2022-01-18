@@ -39,11 +39,13 @@ export const mainDisplay = (() => {
 
   function getFeed() { return feed; }
 
-  function createSearchOverlay(event) {
+  function createSearch(event) {
     searchOpen = true;
     event.target.style.color = "#fb8907";
     const overlay = document.createElement('div');
     overlay.classList.add("search-overlay-container");
+    const popUpBackground = document.createElement("div");
+    popUpBackground.classList.add("pop-up-back");
     const popUp = document.createElement("div");
     popUp.classList.add("pop-up");
     const closeBtnContainer = document.createElement("div");
@@ -75,6 +77,7 @@ export const mainDisplay = (() => {
     dateContainer.appendChild(searchForm);
     popUp.appendChild(closeBtnContainer);
     popUp.appendChild(dateContainer);
+    overlay.appendChild(popUpBackground);
     overlay.appendChild(popUp);
     document.body.style.overflow = "hidden";
     document.body.appendChild(overlay);
@@ -89,6 +92,7 @@ export const mainDisplay = (() => {
   function resetBtns() {
     if (searchOpen) {
       closeSearch();
+      searchOpen = false;
     }
     const pageBtns = document.querySelectorAll(".page-btn");
     for (let i = 0; i < pageBtns.length; i++) {
@@ -101,5 +105,5 @@ export const mainDisplay = (() => {
     event.target.style.color = '#fb8907';
   }
 
-  return {createLogoHeader, createFeed, createSearchOverlay, resetBtns, getFeed, setColor};
+  return {createLogoHeader, createFeed, createSearch, resetBtns, getFeed, setColor};
 })();

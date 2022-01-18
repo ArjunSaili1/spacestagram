@@ -32,9 +32,13 @@ const App = (() => {
   }
 
   function openSearch(event) {
-    mainDisplay.createSearchOverlay(event);
-    document.querySelector(".search-form").addEventListener("submit", callSearchAPI);
-    document.querySelector(".close-btn").addEventListener("click", mainDisplay.resetBtns);
+    const search = mainDisplay.createSearch(event);
+    const searchForm = search.children[1].children[1].children[1];
+    const closeBtn = search.children[1].children[0];
+    const popUpBackground = search.children[0];
+    popUpBackground.addEventListener("click", mainDisplay.resetBtns);
+    searchForm.addEventListener("submit", callSearchAPI);
+    closeBtn.addEventListener("click", mainDisplay.resetBtns);
   }
 
   async function callSearchAPI(event) {
