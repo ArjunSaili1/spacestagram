@@ -118,7 +118,7 @@ export const cards = (() => {
 
   function updateLikeCountDisplay(apodData) {
     const cardId = `a${apodData.date.replace("-", '')}`;
-    const likedCard = document.querySelector("#" + cardId)
+    const likedCard = document.querySelector(`#${cardId}`);
     const heartSVG = likedCard.children[2].children[0].children[0];
     const heartSVGPath = heartSVG.children[0].children[0];
     const likeCount = heartSVG.nextElementSibling;

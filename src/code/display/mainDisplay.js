@@ -3,6 +3,7 @@ import {logo} from "../../icons";
 export const mainDisplay = (() => {
 
   let feed;
+  let searchOpen = false;
 
   function createLogoHeader() {
     const header = document.createElement("header");
@@ -38,8 +39,9 @@ export const mainDisplay = (() => {
 
   function getFeed() { return feed; }
 
-  function createSearchOverlay(e){
-    e.target.style.color = "green";
+  function createSearchOverlay(event) {
+    searchOpen = true;
+    event.target.style.color = "#fb8907";
     const overlay = document.createElement('div');
     overlay.classList.add("search-overlay-container");
     const popUp = document.createElement("div");
@@ -63,23 +65,37 @@ export const mainDisplay = (() => {
     searchBtn.type = "submit";
     searchBtn.textContent = "Search";
     searchBtn.classList.add("search-btn");
-    searchForm.classList.add("search-form")
+    searchForm.classList.add("search-form");
     searchForm.appendChild(dateInput);
     searchForm.appendChild(searchBtn);
     dateContainer.appendChild(dateSearchHeading);
     dateContainer.appendChild(searchForm);
     popUp.appendChild(closeBtnContainer);
     popUp.appendChild(dateContainer);
-    overlay.appendChild(popUp)
+    overlay.appendChild(popUp);
     document.body.style.overflow = "hidden";
     document.body.appendChild(overlay);
   }
 
-  function closeSearch(e){
+  function closeSearch() {
     document.body.style.overflow = 'unset';
     document.querySelector(".search-overlay-container").style.display = "none";
-    document.querySelector("#search-btn-heading").style.color = "unset";
   }
 
-  return {createLogoHeader, createFeed, createSearchOverlay, closeSearch, getFeed};
+  function resetBtns() {
+    if (searchOpen) {
+      closeSearch();
+    }
+    const pageBtns = document.querySelectorAll(".page-btn");
+    for (let i = 0; i < pageBtns.length; i++) {
+      pageBtns[i].style.color = "unset";
+    }
+  }
+
+  function setColor(event) {
+    feed.innerHTML = '';
+    event.target.style.color = '#fb8907';
+  }
+
+  return {createLogoHeader, createFeed, createSearchOverlay, resetBtns, getFeed, setColor};
 })();

@@ -10,34 +10,40 @@ const App = (() => {
   function appStartup() {
     mainDisplay.createLogoHeader();
     mainDisplay.createFeed();
-    feed = mainDisplay.getFeed();
-    newPost();
-    newPost();
+    resetFeed();
     bindEvents();
   }
 
-  function bindEvents() {
+  function resetFeed() {
+    mainDisplay.resetBtns();
+    feed = mainDisplay.getFeed();
+    feed.innerHTML = "";
+    newPost();
+    newPost();
     window.addEventListener("scroll", updateFeed);
-    document.querySelector("#liked-apod-text").addEventListener("click", openLikedPhotos);
-    document.querySelector("#search-btn").addEventListener("click", (e)=>{
-      mainDisplay.createSearchOverlay(e)
-    document.querySelector(".search-form").addEventListener("submit", callSearchAPI);
-    document.querySelector(".close-btn").addEventListener("click", mainDisplay.closeSearch);
-  });
   }
 
-  async function callSearchAPI(e){
-    e.preventDefault();
-    const dateValue = e.path[0].children[0].value;
-    if(dateValue){
+  function bindEvents() {
+    document.querySelector("#liked-apod-text").addEventListener("click", openLikedPhotos);
+    document.querySelector("#search-btn").addEventListener("click", (event) => {
+      mainDisplay.createSearchOverlay(event);
+      document.querySelector(".search-form").addEventListener("submit", callSearchAPI);
+      document.querySelector(".close-btn").addEventListener("click", mainDisplay.resetBtns);
+    });
+    document.querySelector("#main-logo").addEventListener("click", resetFeed);
+  }
+
+  async function callSearchAPI(event) {
+    event.preventDefault();
+    const dateValue = event.path[0].children[0].value;
+    if (dateValue) {
       feed.innerHTML = '';
-      mainDisplay.closeSearch(e);
-      const [searchData, apiError] = await apiLogic.queryAPI(dateValue);
+      mainDisplay.resetBtns();
       window.removeEventListener("scroll", updateFeed);
+      const [searchData, apiError] = await apiLogic.queryAPI(dateValue);
       if (apiError) {
         feed.appendChild(cards.createErrorCard());
-      }
-      else{
+      } else {
         searchData.likes = 0;
         feed.appendChild(cards.createFeedCard(searchData));
       }
@@ -46,25 +52,11 @@ const App = (() => {
 
   function openLikedPhotos(event) {
     window.removeEventListener("scroll", updateFeed);
-    const oldCards = [...feed.children]
-    event.target.removeEventListener("click", openLikedPhotos);
-    event.target.addEventListener("click", ()=>{
-      event.target.style.color = "unset";
-      remakeFeed(oldCards)});
-    feed.innerHTML = '';
-    event.target.style.color = 'green';
+    mainDisplay.setColor(event);
     const liked = cards.getLiked();
-    for (let i = 0; i < liked.length; i++) {
+    for (let i = liked.length - 1; i > -1; i--) {
       feed.appendChild(cards.createFeedCard(liked[i]));
     }
-  }
-
-  function remakeFeed(cards){
-    feed.innerHTML = '';
-    for(let i = 0; i < cards.length; i++){
-      feed.appendChild(cards[i]);
-    }
-    bindEvents();
   }
 
   async function newPost() {
