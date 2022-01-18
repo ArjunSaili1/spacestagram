@@ -2,7 +2,7 @@ import {loaders} from "./display/loaders";
 
 export const apiLogic = (() => {
   async function queryAPI(query) {
-    loaders.createLoader();
+    loaders.showLoader();
     try {
       const apiResponse = await fetch(
         `https://api.nasa.gov/planetary/apod?api_key=RniEDW1yakFezEGAKtaMcLMz2KtS5xUKPdMUlky0&date=${query}`,

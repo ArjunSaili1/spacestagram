@@ -154,9 +154,10 @@ iframe{
 }
 
 .rocket{
+    width: 15%;
     position: absolute;
-    height: 30%;
-    left: 50px;
+    height: 25%;
+    left: 115px;
     transform: rotate(145deg);
 }
 

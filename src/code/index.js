@@ -2,6 +2,7 @@ import {apiLogic} from "./apiLogic";
 import {mainDisplay} from "./display/mainDisplay";
 import {cards} from "./display/cards";
 import "./styles.css";
+import { loaders } from "./display/loaders";
 
 const App = (() => {
 
@@ -10,6 +11,7 @@ const App = (() => {
   function appStartup() {
     mainDisplay.createLogoHeader();
     mainDisplay.createFeed();
+    loaders.createLoader();
     resetFeed();
     bindEvents();
   }
