@@ -1,4 +1,6 @@
 import {logo} from "../../icons";
+import { heart } from "../../icons";
+import { searchIcon } from "../../icons";
 
 export const mainDisplay = (() => {
 
@@ -8,21 +10,21 @@ export const mainDisplay = (() => {
   function createLogoHeader() {
     const header = document.createElement("header");
     header.id = "main-header";
-    const likedAPODAnchor = document.createElement('button');
-    likedAPODAnchor.id = 'liked-apod-anchor';
-    const likedAPODHeading = document.createElement('h3');
-    likedAPODHeading.classList.add('page-btn');
-    likedAPODHeading.id = 'liked-apod-text';
-    likedAPODHeading.textContent = "Liked Photos";
-    likedAPODAnchor.appendChild(likedAPODHeading);
+    const likedPhotoButton = document.createElement('button');
+    likedPhotoButton.id = 'liked-photo-button';
+    likedPhotoButton.classList.add('page-btn');
+    const likedPhotoImgContainer = document.createElement('div');
+    likedPhotoImgContainer.id = 'liked-photo-logo';
+    likedPhotoImgContainer.innerHTML += heart;
+    likedPhotoButton.appendChild(likedPhotoImgContainer);
     const openSearchBtn = document.createElement('button');
-    const searchBtnHeading = document.createElement('h3');
     openSearchBtn.id = 'open-search-btn';
-    searchBtnHeading.id = 'search-btn-heading';
-    searchBtnHeading.classList.add("page-btn");
-    searchBtnHeading.textContent = "Search by date";
-    openSearchBtn.appendChild(searchBtnHeading);
-    header.appendChild(likedAPODAnchor);
+    openSearchBtn.classList.add("page-btn");
+    const searchBtnContainer = document.createElement('div');
+    searchBtnContainer.id = 'search-btn-container';
+    searchBtnContainer.innerHTML += searchIcon;
+    openSearchBtn.appendChild(searchBtnContainer);
+    header.appendChild(likedPhotoButton);
     header.innerHTML += logo;
     header.appendChild(openSearchBtn);
     document.body.appendChild(header);
@@ -30,6 +32,7 @@ export const mainDisplay = (() => {
 
   function createFeed() {
     const main = document.createElement('main');
+    main.id = "main-content";
     feed = document.createElement('div');
     feed.id = 'feed';
     main.appendChild(feed);

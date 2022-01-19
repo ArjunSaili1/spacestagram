@@ -27,7 +27,7 @@ const App = (() => {
   }
 
   function bindEvents() {
-    document.querySelector("#liked-apod-text").addEventListener("click", openLikedPhotos);
+    document.querySelector("#liked-photo-button").addEventListener("click", openLikedPhotos);
     document.querySelector("#main-logo").addEventListener("click", resetFeed);
   }
 

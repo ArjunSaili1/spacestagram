@@ -1,24 +1,67 @@
+@media only screen and (min-width: 1700px) {
+    .feed-card{
+        width: 600px !important; 
+    }
+    #main-logo{
+        width: 300px !important;
+    }
+    .media-container{
+        height: 550px !important;
+    }
+    .description{
+        font-size: 1.1em !important;
+    }
+    .post-title{
+        font-size: 1.3em !important;
+    }
+    .post-date{
+        font-size: 1em !important;
+    }
+    .like-container{
+        font-size: 1.2em !important;
+    }
+}
+
 @media only screen and (max-width: 700px) {
     .feed-card{
         width: 450px !important; 
     }
+    #main-logo{
+        width: 200px !important;
+    }
+    .media-container{
+        height: 400px !important;
+    }
+    .like-container{
+        font-size: 0.95em !important;
+    }
+    
 }
 
-@media only screen and (max-width: 470px) {
+@media only screen and (max-width: 500px) {
     .feed-card{
         width: 90vw!important; 
     }
     .media-container{
-        height: 300px !important;
+        height: 350px !important;
     }
     .post-date{
-        font-size: .75em;
+        font-size: .7em !important;
     }
     .post-title{
-        font-size: 1em;
+        font-size: 0.9em !important;
     }
     .description{
-        font-size: 0.7em;
+        font-size: 0.8em !important;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #main-logo{
+        width: 180px !important;
+    }
+    .media-container{
+        height: 300px !important;
     }
 }
 
@@ -41,7 +84,6 @@ html,body{
     justify-content: space-around;
     align-items: center;
     padding: 1vw 2vw 1vw 2vw;
-    margin-bottom: 20px;
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
 
@@ -55,6 +97,12 @@ html,body{
     overflow: visible;
     width: 300px;
     cursor: pointer;
+}
+
+#main-content{
+    position: absolute;
+    width: 100%;
+    margin-top: 20px;
 }
 
 #feed{
@@ -130,7 +178,9 @@ iframe{
 }
 
 .page-btn{
-    font-size: 15px;
+    height: 1.7em;
+    width: 1.7em;
+    background-color: unset;
 }
 
 .loading-animation{
@@ -250,4 +300,12 @@ button{
     height: 100%;
     width: 100%;
     background-color: rgba(105,105,105,0.65);
+}
+
+#liked-photo-logo{
+
+}
+
+#liked-photo-button{
+    background-color: unset;
 }
