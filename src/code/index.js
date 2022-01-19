@@ -33,17 +33,17 @@ const App = (() => {
 
   function openSearch(event) {
     const search = mainDisplay.createSearch(event);
-    const searchForm = search.children[1].children[1].children[1];
+    console.log(search.children)
+    const searchBtn = document.querySelector(".search-btn");
     const closeBtn = search.children[1].children[0];
     const popUpBackground = search.children[0];
     popUpBackground.addEventListener("click", mainDisplay.resetBtns);
-    searchForm.addEventListener("submit", callSearchAPI);
+    searchBtn.addEventListener("click", callSearchAPI);
     closeBtn.addEventListener("click", mainDisplay.resetBtns);
   }
 
   async function callSearchAPI(event) {
-    event.preventDefault();
-    const dateValue = event.path[0].children[0].value;
+    const dateValue = document.querySelector(".date-input").value
     document.querySelector(".search-btn").removeEventListener("click", callSearchAPI);
     if (dateValue) {
       feed.innerHTML = '';

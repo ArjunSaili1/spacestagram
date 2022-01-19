@@ -55,8 +55,6 @@ export const mainDisplay = (() => {
     closeBtn.classList.add("close-btn");
     closeBtn.innerHTML = "&times";
     closeBtnContainer.appendChild(closeBtn);
-    const dateContainer = document.createElement("div");
-    dateContainer.classList.add("date-time-info");
     const dateSearchHeading = document.createElement("h3");
     dateSearchHeading.classList.add("enter-date-text");
     dateSearchHeading.textContent = "Please enter a seach date";
@@ -74,10 +72,9 @@ export const mainDisplay = (() => {
     searchForm.classList.add("search-form");
     searchForm.appendChild(dateInput);
     searchForm.appendChild(searchBtn);
-    dateContainer.appendChild(dateSearchHeading);
-    dateContainer.appendChild(searchForm);
     popUp.appendChild(closeBtnContainer);
-    popUp.appendChild(dateContainer);
+    popUp.appendChild(dateSearchHeading);
+    popUp.appendChild(searchForm);
     overlay.appendChild(popUpBackground);
     overlay.appendChild(popUp);
     document.body.style.overflow = "hidden";
