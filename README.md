@@ -3,6 +3,9 @@
 "Image-sharing from the final frontier". 
 Created for the 2022 Shopify Summer Frontend Intern Challenge.
 
+## Note
+Normally I would secure my API Key to prevent it from getting stolen however as this API is free and access is unlimited I have decided securing it is not neccessary.
+
 ## Description
 This web app pulls random images from the [NASA Astronomy Photo of the Day API](https://github.com/nasa/apod-api) and creates a scrollable feed (like Instagram). Each image has it's own title, description and date that is displayed on it's card. Users are also able to search images by a chosen date and can like posts. They can see their liked photos by clicking the heart in the top left hand corner.
 
