@@ -82,7 +82,7 @@ const App = (() => {
     if (window.innerHeight + window.scrollY < document.body.scrollHeight) { return; }
     newPost();
     window.removeEventListener("scroll", updateFeed);
-    setTimeout(function buffer() { window.addEventListener("scroll", updateFeed); }, 500);
+    setTimeout(function buffer() { window.addEventListener("scroll", updateFeed); }, 1000);
   }
   return {appStartup};
 })();

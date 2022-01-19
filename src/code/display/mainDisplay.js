@@ -1,6 +1,4 @@
-import {logo} from "../../icons";
-import { heart } from "../../icons";
-import { searchIcon } from "../../icons";
+import {logo, heart, searchIcon} from "../../icons";
 
 export const mainDisplay = (() => {
 

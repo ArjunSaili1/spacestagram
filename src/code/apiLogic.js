@@ -12,7 +12,6 @@ export const apiLogic = (() => {
       await loaders.removeLoader();
       return [apiResponseJSON, null];
     } catch (error) {
-      loaders.removeLoader();
       return [null, error];
     }
   }
